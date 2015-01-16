@@ -40,6 +40,7 @@ class CreditGateway extends PaymentGateway_MerchantHosted {
     //$credit = $CreditModel::CurrentUser()->$CreditField->Value();
 
     return new PaymentGateway_Success();
+    
   }
 
   public function getSupportedCurrencies() {
