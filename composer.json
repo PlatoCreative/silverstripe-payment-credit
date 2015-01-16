@@ -1,6 +1,6 @@
 {
-  "name": "platocreative/silverstripe-payment-credit",
-  "description": "Credit payment method for SilverStripe payments",
+  "name": "platocreative/payment-credit",
+  "description": "Credit payment method for SilverStripe Payments",
   "type": "silverstripe-module",
   "license": "BSD-3-Clause",
   "keywords": ["silverstripe","payment","credit"],
