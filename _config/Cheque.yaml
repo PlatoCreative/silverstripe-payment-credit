@@ -1,0 +1,14 @@
+name: Credit
+---
+
+PaymentFactory:
+  Credit:
+    title: 'Credit Payment'
+    gateway_classes:
+      live: 'CreditGateway'
+      dev: 'CreditGateway'
+      test: 'CreditGateway'
+    processor: 'CreditProcessor'
+    model: 'Payment'
+    credit_model: 'Member'
+    credit_field: 'Credit'
