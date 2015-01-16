@@ -34,13 +34,12 @@ class CreditGateway extends PaymentGateway_MerchantHosted {
     //return new PaymentGateway_Incomplete();
 
     // Get credit amount based on config
-    //$CreditModel = $this->config()->get('credit_model');
-    //$CreditField = $this->config()->get('credit_field');
-
-    //$credit = $CreditModel::CurrentUser()->$CreditField->Value();
+    //$conf = Config::inst()->get('PaymentFactory', 'Credit');
+    //$model = new $conf['credit_model']();
+    //$credit = $model->CurrentUser()->$conf['credit_field'];
 
     return new PaymentGateway_Success();
-    
+
   }
 
   public function getSupportedCurrencies() {
