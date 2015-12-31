@@ -1,25 +1,25 @@
 <?php
 
-class CreditGateway extends PaymentGateway_MerchantHosted {
+class CreditGateway extends PaymentGateway_MerchantHosted
+{
 
-  protected $supportedCurrencies = array(
+    protected $supportedCurrencies = array(
     'NZD' => 'New Zealand Dollar'
   );
 
-  public function validate($data) {
+    public function validate($data)
+    {
+        $validationResult = $this->getValidationResult();
 
-    $validationResult = $this->getValidationResult();
+        if (! isset($data['Amount'])) {
+            $validationResult->error('Payment amount not set');
+        } elseif (empty($data['Amount'])) {
+            $validationResult->error('Payment amount cannot be null');
+        }
 
-    if (! isset($data['Amount'])) {
-      $validationResult->error('Payment amount not set');
+        $this->validationResult = $validationResult;
+        return $validationResult;
     }
-    else if (empty($data['Amount'])) {
-      $validationResult->error('Payment amount cannot be null');
-    }
-
-    $this->validationResult = $validationResult;
-    return $validationResult;
-  }
 
   /**
   * Logic for processing the payment.
@@ -29,8 +29,9 @@ class CreditGateway extends PaymentGateway_MerchantHosted {
     * - Reached a credit limit
   * @return Payment Result
   */
-  public function process($data) {
-    //return new PaymentGateway_Failure();
+  public function process($data)
+  {
+      //return new PaymentGateway_Failure();
     //return new PaymentGateway_Incomplete();
 
     // Get credit amount based on config
@@ -39,15 +40,14 @@ class CreditGateway extends PaymentGateway_MerchantHosted {
     //$credit = $model->CurrentUser()->$conf['credit_field'];
 
     return new PaymentGateway_Success();
-
   }
 
-  public function getSupportedCurrencies() {
-
-    $config = $this->getConfig();
-    if (isset($config['supported_currencies'])) {
-      $this->supportedCurrencies = $config['supported_currencies'];
+    public function getSupportedCurrencies()
+    {
+        $config = $this->getConfig();
+        if (isset($config['supported_currencies'])) {
+            $this->supportedCurrencies = $config['supported_currencies'];
+        }
+        return $this->supportedCurrencies;
     }
-    return $this->supportedCurrencies;
-  }
 }
